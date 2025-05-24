@@ -1,8 +1,4 @@
 
-# Web Mini Projects Collection 🌐
-
-This repository contains a collection of small, interactive web applications built using **HTML, CSS, and JavaScript**. Each project is self-contained and demonstrates different aspects of front-end development.
-
 ## Projects
 
 ### ⏰ Analog Clock
