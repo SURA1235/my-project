@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title><link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playwrite+US+Modern&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Whisper&display=swap" rel="stylesheet"> 
+     <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnmhJH_dL-OfV4wF1b3GTDmNcCHgFJdyCirQ&s');
+            background-repeat: no-repeat;
+            background-size: 100rem;
+            font-family: roboto;
+        }
+        .hist{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 120px;
+        }
+        .form{
+            padding: 30px;
+            height: 300px;
+            width: 350px;
+        }
+        .login{
+            padding: 20px;
+            border:2px solid black;
+            background-color: rgba(248, 248, 255, 0.192);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 3px;
+        }
+        .login p{
+            text-align: center;
+            font-size: 20px;
+        }
+        .sub{
+            text-align: center;
+        }
+        .submit{
+            background-color: rgb(13, 209, 160);
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: bolder;
+        }
+        .reset{
+            background-color: rgb(27, 143, 12);
+            padding: 10px;
+            border-radius: 10px;
+            font-weight: bolder;
+        }
+        .name,.word{
+            font-size: 20px;
+        }
+        .use,.orb{
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            font-size: 20px;
+            padding-right:30px ;
+            background-color: rgba(248, 248, 255, 0.103);
+            backdrop-filter: blur(10px);
+        }
+        .first{
+            float: left;
+            font-family: roboto;
+            padding: 50px;
+        }
+        .first p{
+            font-family: Whisper;
+            font-size: 70px;
+            padding-bottom: 50px;
+            padding-left: 10px;
+            text-align: center;
+        }
+        .pre{
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="first">
+        <p>Welcome to</p>
+        <pre class="pre">
+       Here's more on login page in html and css
+   In HTML, create a basic structure using HTML5 elements
+  such as form, input, label, and button. Define the login 
+    form fields: username, password, and a submit button.
+      Use semantic HTML to ensure accessibility.
+        </pre>
+
+    </div>
+
+    <div class="hist">
+        <form class="form">
+            <div class="login">
+                <p>Login</p>
+            <br>
+                <div class="username" id="user">
+                    <span class="name"> Username:</span><br><br>
+                        <input type="text" class="use" placeholder="Enter your name">
+                    </div>
+                    <br><br>
+                    <div class="password" id="psss">
+                        <span class="word"> Password:</span><br><br>
+                        <input type="password"  class="orb" id="orb" placeholder="Enter your password">
+                    </div>
+                    <br><br><br>
+                    <div class="sub">
+                        <button type="button" class="submit" id="submit" onclick="checkPassword(event)">Login</button>
+                        <input type="reset" class="reset">
+    
+                    </div>
+            </div>
+        </form>
+    </div>
+    <progress></progress>
+<script>
+    let checkPassword = (event)=>{
+    let a= document.getElementById('orb')
+    event.preventDefault(); 
+    if(a.value ==='pass'){
+        // window.location.href="file:///C:/Users/hp/OneDrive/Desktop/myProject111/todo.html"
+    }
+    else if(a.value===""){
+        alert("enter the name and password")
+
+    }
+    else{
+        alert("your password is incorrect")
+    }
+}
+</script>
+
+
+</body>
+</html>

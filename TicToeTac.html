@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: aquamarine;
+        }
+
+        .tick {
+            padding-top: 130px;
+            padding-left: 130px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tac {
+            height: 400px;
+            width: 400px;
+            background-color: rgba(0, 0, 255, 0.562);
+
+        }
+
+        .one,
+        .two,
+        .three,
+        .four,
+        .five,
+        .six,
+        .seven,
+        .eight,
+        .nine {
+            height: 130px;
+            width: 130px;
+            border: 2px solid black;
+            text-align: center;
+            font-size: 30px;
+
+        }
+
+        .sit,
+        .git,
+        .fit {
+            display: flex;
+        }
+
+        .winner {
+            margin-left: 464px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tick">
+        <div class="tac" id="tac">
+            <div class="sit">
+
+                <div class="one" id="one"></div>
+                <div class="two" id="two"></div>
+                <div class="three" id="three"></div>
+            </div>
+            <div class="fit">
+
+                <div class="four" id="four"></div>
+                <div class="five" id="five"></div>
+                <div class="six" id="six"></div>
+            </div>
+
+            <div class="git">
+                <div class="seven" id="seven"></div>
+                <div class="eight" id="eight"></div>
+                <div class="nine" id="nine"></div>
+            </div>
+        </div>
+
+    </div>
+    <div class="winner" id="winner">
+    </div>
+    <script>
+        let elements = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+        let win = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],
+            [0, 4, 8], [2, 4, 6]
+        ];
+
+        let board = Array(9).fill(null);
+        let currentPlayer = Math.random() < 0.5 ? 'X' : 'O';
+        let winnerElement = document.getElementById("winner");
+        let gameOver = false;
+
+        elements.forEach(function (id, index) {
+            let cell = document.getElementById(id);
+            cell.addEventListener('click', function () {
+                if (board[index] || gameOver)
+                    return;
+
+                board[index] = currentPlayer;
+                cell.innerHTML = currentPlayer;
+
+                if (checkWinner()) {
+                    winnerElement.innerHTML = currentPlayer + " wins!";
+                    gameOver = true;
+                    return;
+                }
+
+                if (!board.includes(null)) {
+                    winnerElement.innerHTML = "It's a draw!";
+                    gameOver = true;
+                    return;
+                }
+
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            });
+        });
+
+        function checkWinner() {
+            return win.some(pattern => {
+                const [a, b, c] = pattern;
+                return board[a] && board[a] === board[b] && board[a] === board[c];
+            });
+        }
+
+    </script>
+</body>
+
+</html>

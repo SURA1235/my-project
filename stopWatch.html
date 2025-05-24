@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Stopwatch</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        background: linear-gradient(to right, #F27121, #E94057, #8A2387);
+      }
+      .first {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 20px;
+      }
+      .stop_watch {
+        background-color: aqua;
+        border: 2px solid black;
+        width: 350px;
+        height: 150px;
+        display: inline-flex;
+        justify-content: center;
+      }
+      .hour, .minites, .second {
+        border: 2px solid black;
+        margin: 20px;
+        width: 80px;
+        height: 80px;
+        text-align: center;
+        font-size: 70px;
+        line-height: 80px; /* Vertically center the text */
+      }
+      .dnd {
+        text-align: center;
+      }
+      #start, #stop, #reset {
+        padding: 10px 20px;
+        font-size: 20px;
+        border-radius: 10px;
+        margin: 0 10px;
+      }
+      .button {
+        display: flex;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dnd">
+      <div class="first">
+        <div class="stop_watch">
+          <div class="hour" id="hour">00</div>
+          <div class="minites" id="minites">00</div>
+          <div class="second" id="second">00</div> 
+        </div>
+      </div>
+      <div class="button">
+        <button id="start">Start</button>  
+        <button id="stop">Stop</button>
+        <button id="reset">Reset</button>
+      </div>
+    </div>
+    <script>
+      let start = document.getElementById('start');
+      let stop = document.getElementById('stop');
+      let reset = document.getElementById('reset');
+      
+      let hour = 0;
+      let second = 0;
+      let count = 0;
+      let minites = 0;
+      let timer = false;
+
+      start.addEventListener('click', function () {
+        timer = true;
+        stopWatch();
+      });
+
+      stop.addEventListener('click', function () {
+        timer = false;
+      });
+
+      let stopWatch = () => {
+        if (timer) {
+          count++;
+          
+          if (count === 100) {
+            second++;
+            count = 0;
+          }
+
+          if (second === 60) {
+            minites++;
+            second = 0;
+          }
+
+          if (minites === 60) {
+            hour++;
+            minites = 0;
+          }
+
+          let displayHour = hour < 10 ? "0" + hour : hour;
+          let displayMinute = minites < 10 ? "0" + minites : minites;
+          let displaySecond = second < 10 ? "0" + second : second;
+
+          document.getElementById("hour").innerText = displayHour;
+          document.getElementById("minites").innerText = displayMinute;
+          document.getElementById("second").innerText = displaySecond;
+
+          setTimeout(stopWatch, 10);
+        }
+      };
+
+      reset.addEventListener('click', function() {
+        timer = false;
+        hour = 0;
+        minites = 0;
+        second = 0;
+        count = 0;
+        document.getElementById("hour").innerText = "00";
+        document.getElementById("minites").innerText = "00";
+        document.getElementById("second").innerText = "00";
+      });
+    </script>
+  </body>
+</html>

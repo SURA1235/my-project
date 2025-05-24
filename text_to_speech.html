@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <style>
+            body{
+                background: rgb(63,94,251);
+                background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+               
+            }
+            .speach{
+               display: flex;
+                justify-content: center;
+                text-align: center;
+               
+            }
+            .text{
+                background-color: rgba(0, 0, 0, 0.171);
+                backdrop-filter: 10px;
+                width: 600px;
+                height: 300px;
+                font-size: 20px;
+                border: 2px solid black;
+            }
+            p{
+                text-align: center;
+                font-size: 30px;
+            }
+            .btn{
+                text-align: center;
+            }
+            button{
+                padding: 10px 80px 10px 80px;
+                font-size: 20px;
+                border-radius: 10px;
+                background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+            }
+        </style>
+    </head>
+    <body>
+        <p>Text to Speech</p>
+        <div class="speach">
+            <div class="input">
+                <textarea class="text" id="text" placeholder="Enter the text"> </textarea> 
+            </div>
+        </div>
+        <div class="btn">
+            <button onclick="speakText()">Start</button>
+        </div>
+        <script>
+            let speakText = ()=>{
+                const app = document.getElementById('text')
+                const ask= new SpeechSynthesisUtterance()
+                ask.text = app.value 
+                const speak= window.speechSynthesis
+                speak.speak(ask);
+            }
+
+            
+        </script>
+    
+    </body>
+</html>

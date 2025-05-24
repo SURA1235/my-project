@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playwrite+US+Modern&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Whisper&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=Special+Gothic+Expanded+One&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            background-color: aqua;
+        }
+
+        .game {
+            display: inline-flex;
+            padding-left: 300px;
+
+        }
+
+        button {
+            border-radius: 40px;
+            background-color: rgba(85, 80, 80, 0.126);
+            cursor: pointer;
+        }
+
+        img {
+            border-radius: 40px;
+            height: 200px;
+            width: 200px;
+        }
+
+        .titel {
+            font-size: 50px;
+            text-align: center;
+            font-family: Bungee Tint;
+
+        }
+
+        .paper {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        .append {
+            font-size: 50px;
+            text-align: center;
+            border: 2px solid black;
+            width: 340px;
+            height: 70px;
+            margin-top: 52px;
+            margin-left: 547px;
+            font-family: Special Gothic Expanded One;
+        }
+    </style>
+</head>
+
+<body>
+    <p class="titel">Rock,Paper & Scissor Game </p>
+    <div class="game">
+        <div class="rock">
+            <button id="r">
+                <img src="https://cdn.hugeicons.com/icons/asteroid-01-stroke-standard.svg">
+            </button>
+        </div>
+
+        <div class="paper">
+            <button id="p">
+                <img src="https://cdn.hugeicons.com/icons/license-stroke-sharp.svg">
+            </button>
+        </div>
+
+        <div class="scissor">
+            <button id="s">
+                <img src="https://cdn.hugeicons.com/icons/scissor-solid-standard.svg">
+            </button>
+        </div>
+    </div>
+    <div class="append" id="append"></div>
+    <script>
+        let r = document.getElementById('r')
+        let p = document.getElementById('p')
+        let s = document.getElementById('s')
+        let g = document.getElementById('append')
+        r.addEventListener('click', () => code('rock'))
+        p.addEventListener('click', () => code('paper'))
+        s.addEventListener('click', () => code('scissor'))
+
+        let code = (userChoice) => {
+            let choice = ['rock', 'paper', 'scissor']
+            let m = Math.floor(Math.random() * 3)
+            let comchoice = choice[m]
+
+            if (choice === 'rock' || comchoice === 'paper') {
+                g.innerHTML = 'Paper win'
+            }
+            else if (choice === 'paper' || comchoice === 'scissor') {
+                g.innerHTML = 'Scissor win'
+            }
+            else if (choice === 'rock' || comchoice === 'scissor') {
+                g.innerHTML = 'Rock win'
+            }
+            else {
+                g.innerHTML = 'Draw!'
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

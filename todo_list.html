@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link href="css/style.css" rel="stylesheet"> -->
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+            }
+            body{
+                background-color: aqua;
+            }
+            .myinput{
+                background-color: rgb(121, 158, 143);
+                padding: 30px;
+                font-size: 40px;
+            }
+            .input{
+                font-size: 25px;
+            }
+            .titel{
+                text-align: center;
+            }
+
+            .button{
+             padding: 10px;
+             border-radius: 10px;
+            }
+           .type{
+            background-color: aqua;
+            font-size: 30px;
+           } 
+        </style>
+    </head>
+    <body>
+        <div  class="myinput" >
+            <p class="titel">TO DO LIST</p>
+            <input type ="text" id="myInput" class="input" placeholder="enter the task">
+        <button id="button" class="button" onclick="addTask()">Add task</button>
+    </div>
+        <div class="type" id="addtask"></div>
+        <script>
+            let a = document.getElementById('addtask')
+            let creat = document.createElement('div')
+            a.appendChild(creat)
+    
+            let addTask =()=>{
+                let p = document.createElement('p')
+                p.textContent = document.getElementById('myInput').value
+                creat.appendChild(p)
+                p.style.cursor='pointer'
+                p.style.padding='20px'
+                document.getElementById('myInput').value =''
+                p.onclick=function(){
+                if(  p.style.textDecoration=== 'line-through'){
+                      p.style.textDecoration= 'none'
+                }
+                else{
+                      p.style.textDecoration= 'line-through'
+                }
+            }
+            p.appendChild(document.createElement('br'))
+            
+            let btn1= document.createElement('button')
+            btn1.textContent = 'edit'
+            btn1.style.backgroundColor='green'
+            btn1.style.padding='10px'
+            btn1.onclick = function () {
+                let newText = prompt("Edit your task:", p.firstChild.textContent); 
+                if (newText !== null && newText.trim() !== "") {
+                    p.firstChild.textContent = newText; 
+                }
+            }
+            p.appendChild(btn1)
+            
+
+                let btn2= document.createElement('button')
+                btn2.textContent = 'delete'
+                btn2.style.backgroundColor='red'
+                btn2.style.padding='10px'
+                btn2.onclick=function(){
+                creat.removeChild(p)
+                }
+                p.appendChild(btn2)
+            }
+            
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: rgb(63, 94, 251);
+            background: radial-gradient(circle, rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+            justify-content: center;
+            display: flex;
+            align-items: center;
+        }
+
+        /* this is div of glass morphism*/
+        .center {
+            padding-top: 20px;
+            background-color: rgba(0, 0, 0, 0.329);
+            backdrop-filter: 10px;
+            width: 50rem;
+            height: 30rem;
+            border-radius: 10px;
+            align-items: center;
+        }
+
+        .dictonary {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+
+        }
+
+        #input {
+            font-size: 30px;
+            border: 2px solid black;
+            width: 50em;
+            height: 23vh;
+            resize: none;
+            display: flex;
+            justify-items: center;
+            margin-left: 40px;
+        }
+
+        /*this is button and its properties*/
+        .fa {
+            font-size: 33px;
+            background-color: #2196F3;
+            border-radius: 5px;
+            width: 61px;
+            height: 47px;
+        }
+
+        .fa:hover {
+            background-color: cyan;
+        }
+
+        .hr {
+            text-align: center;
+        }
+
+        .meaning {
+            padding-left: 30px;
+        }
+
+        #select {
+            appearance: none;
+            border: 0;
+            outline: 0;
+            font: inherit;
+            height: 34px;
+            width: 85px;
+            padding: 6px;
+            background: var(--arrow-icon) no-repeat right 0.8em center / 1.4em,
+                linear-gradient(to left, var(--arrow-bg) 3em, var(--select-bg) 3em);
+            color: rgb(24, 23, 23);
+            border-radius: 0.25em;
+            box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            font-weight: bolder;
+            margin: 10px 10px;
+            &::-ms-expand {
+                display: none;
+            }
+            &:focus {
+                outline: none;
+            }
+            option {
+                color: inherit;
+                background-color: var(--option-bg);
+            }
+        }
+
+        #err {
+            margin: 20px;
+            font-size: 32px;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+
+        #mini {
+            border: 2px solid black;
+            width: 45em;
+            height: 25vh;
+            margin: 20px 20px;
+            overflow: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center">
+        <!--this is main div -->
+        <h1 class="hr">Translator</h1>
+        <div class="dictonary">
+            <!--this input type -->
+            <textarea type="text" oninput="inPut(this)" maxlength="1000" placeholder="Enter the sentence"
+                id="input"></textarea>
+            <button class="fa fa-search" id="search"> </button>
+            <select id="select">
+                <option value="en">English</option>
+                <option value="fr">French</option>
+                <option value="ja">Japanese</option>
+                <option value="zh">Chinese</option>
+                <option value="hi">Hindi</option>
+            </select>
+        </div>
+        <div class="meaning" id="mini">
+            <div id="err"></div>
+        </div>
+    </div>
+
+    <script>
+        let inPut = (input) => {
+            input.value = input.value.charAt(0).toUpperCase() + input.value.slice(1);
+        }
+
+        //hear ther event listener started
+        let btn = document.getElementById('search')
+        let select = document.getElementById('select')
+        select.value.toLowerCase()
+
+        btn.addEventListener('click', function () {
+            const insert = document.getElementById('mini')
+
+            const input = document.getElementById('input')
+
+            const err = document.getElementById('err')
+            const word = input.value.trim()
+
+            if (!word) {
+                err.innerHTML = " <strong> Enter the text </strong>"
+            }
+            else {
+                const targetLang = select.value;
+                const find = `
+            https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${targetLang}&dt=t&q=${encodeURIComponent(word)}`;
+
+                fetch(find)
+                    .then(response => response.json())
+                    .then(data => {
+                        const translated = data[0][0][0];
+                        insert.innerHTML = `<p><strong>Original:</strong> ${word}</p>
+                        <p><strong>Translation: (${targetLang.toUpperCase()})</strong> ${translated}</p>`
+                    })
+                    .catch((err) => {
+                        console.log(`This is an ${err}`)
+                        insert.innerHTML = "<p>Error fetching translation.</p>";
+
+                    })
+            }
+        })
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background-color: aqua;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 100px;
+        }
+
+        .weather {
+            text-align: center;
+
+        }
+
+        .city {
+            padding-top: 20px;
+        }
+
+        .type {
+
+            border-radius: 20px;
+            background-color: rgb(146 44 68 / 65%);
+            box-shadow: 0px 0px 105px 45px rgba(255, 46, 224, 0.9);
+            width: 382px;
+            height: 370px;
+        }
+
+        h1 {
+            padding-top: 20px;
+        }
+
+        .btn {
+            background-color: rgb(70, 241, 84);
+            box-shadow: 0px 0px 58px 12px rgba(255, 255, 46, 0.45);
+            padding: 10px;
+            padding-left: 30px;
+            padding-right: 30px;
+            border-radius: 10px;
+        }
+
+        .input {
+            font-size: 20px;
+            border-radius: 5px;
+            background-color: ghostwhite;
+        }
+
+        #weather {
+
+            padding: 20px;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="type">
+            <div class="weather">
+                <h1>Weather</h1>
+                <br>
+                <div class="city">
+                    <input type="text" placeholder="Enter the city name" id="in" class="input">
+                    <br><br>
+                    <button class="btn" id="btn"> Get weather</button>
+                </div>
+            </div>
+            <br>
+            <div id="weather"></div>
+        </div>
+    </div>
+    <script>
+        const url = 'https://api.openweathermap.org/data/2.5/weather';
+        const apiKey = 'f00c38e0279b7bc85480c3fe775d518c';
+
+        function getWeather() {
+            let city = document.getElementById('in').value
+            const fullUrl = `${url}?q=${city}&appid=${apiKey}&units=metric`
+            document.getElementById('in').value = ''
+
+            fetch(fullUrl)
+                .then((response) => {
+                    return response.json()
+                })
+                .then((data) => {
+                    document.getElementById('weather').innerHTML =
+                        `<h2>${data.name}</h2>
+                          <h3>Temperature: ${(data.main.temp).toFixed(2)}°C</h3>
+                          <h3>Weather:${data.weather[0].description}</h3>
+                          <h3>Humidity: ${data.main.humidity}%</h3>
+                          <h3>Wind:${data.wind.speed} km/h</h3>
+                          `
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+        }
+        document.getElementById('btn').onclick = getWeather
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+                background: rgb(63,94,251);
+                background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+                justify-content: center;
+                display: flex;
+                align-items: center;
+            }
+
+            /* this is div of glass morphism*/
+            .center{
+                padding-top: 20px;
+                background-color: rgba(0, 0, 0, 0.329);
+                backdrop-filter: 10px;
+                width: 50rem;
+                height: 30rem;
+                border-radius: 10px;
+            }
+            .dictonary{
+                text-align: center;
+                
+            }
+            #input{
+                font-size: 30px;
+                border: 2px solid black;
+            }
+            /*this is button and its properties*/
+            .fa{
+                font-size: 33px;
+                background-color: #2196F3;
+                border-radius: 5px;
+            }
+            .fa:hover{
+                background-color: cyan;
+            }
+            .hr{
+                text-align: center;
+            }
+            .meaning{
+                  padding-left: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="center">
+            <!--this is main div -->
+                      <h1 class="hr">Dictonary</h1>
+            <div class="dictonary">
+                <!--this input type -->
+                <input type="text" oninput="inPut(this)" maxlength="50" placeholder="Enter the word" id="input">
+                <button class="fa fa-search" id="search"> </button>
+            </div>
+            <div class="meaning" id="mini"></div>
+        </div>
+
+        <script>
+            let inPut=(input)=>{
+                // this is function the input first latter is  alwayes capital 
+                input.value = input.value.charAt(0).toUpperCase() + input.value.slice(1);
+            }
+              
+            //hear ther event listener started
+            let btn= document.getElementById('search').addEventListener('click',function() {
+           
+                    const input= document.getElementById('input')
+                   const word = input.value
+                    input.value ='' 
+                    const url= `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+                    
+                    const insert=document.getElementById("mini")
+
+                    fetch(url)//this is fetch api of to find word
+                    .then((response)=>{
+                        return response.json()
+                    })
+                    .then((data)=>{
+                        if(data.title==='No Definitions Found'){
+                            insert.innerHTML='No description found'
+                        }
+                        else{
+                            insert.innerHTML=
+                            //this is templeate literal to insert in html
+                 `<h1 style="text-transform:capitalize;">word:${word}</h1>
+                  <h3 style="text-transform:capitalize;">Part of Speech:${data[0].meanings[0].partOfSpeech}</h>
+                  <h2>Defination: ${data[0].meanings[0].definitions[0].definition}</h2>`;
+
+        //this is api to translate the word
+
+      const hindi = `https://api.mymemory.translated.net/get?q=${word}&langpair=en|hi`;
+                               return fetch(hindi)
+                        }
+                    })
+                        .then((response)=>{
+                            return response.json()
+                        })
+                        .then((translateData)=>{
+                                const hindimeaning = translateData.responseData.translatedText;
+                                
+                            //this is templeate literal of translator api to insert in html
+                                insert.innerHTML +=
+                                `<h1>Translation: ${hindimeaning}</h1>`
+                        })
+                        .catch((error)=>{
+                            console.log(error)
+                        })
+                    })
+
+        </script>
+    
+    </body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            .clock{
+                background-color: rgb(32, 111, 185);
+                border-radius: 50%;
+                width: 500px;
+                height: 500px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .sub{
+                background-color: black;
+                width: 470px;
+                height: 470px;
+                border-radius: 50%;
+                
+            }
+            div{
+                color: rgb(240, 17, 17);
+            }
+            .class12{
+                padding-left: 230px;
+                font-size: 30px;
+                width: 20px;
+                height: 20px;
+                top: 20px;
+            }
+            .class6{
+                padding-left: 230px;
+                font-size: 30px;
+                padding-top: 200px;
+                width: 20px;
+                height: 20px;
+                margin-bottom: 20px;
+            }
+            .class3{
+                padding-left:430px;
+                font-size: 30px;
+                padding-top:160px;
+                width: 20px;
+                height: 20px;
+            }
+            .class9{
+                padding-left:30px;
+                font-size: 30px;
+                width: 20px;
+                height: 20px;
+                text-align: center;
+            }
+            .ora{
+                position: absolute;
+                top: 35%;
+                left: 20%;
+                transform: translate(-50%,-50%);
+                display: flex;
+                justify-content: center;
+            }
+            .oral{
+                border-radius: 50%;
+                background-color: black;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                position: relative;
+                right: 50px;
+                bottom: 20px;
+            }
+            .second, .minites, .hour {
+                position: absolute;
+                bottom: 50%;
+                left: 50%;
+                transform-origin: bottom center;
+            }
+            .second{
+                background-color: beige;
+                width: 10px;
+                height: 140px;
+                border-radius: 15px;
+            }
+
+            .minites{
+                background-color: blue;
+                width: 10px;
+                height: 100px;
+                border-radius: 15px;
+            }
+            .hour{
+                background-color: blueviolet;
+                width: 10px;
+                height: 80px;
+                border-radius: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="clock">
+            
+            <div class="sub">
+                    <div class="cloud">
+                    <div class="class12">12</div>
+                    <div class="ora">
+                        <div class="oral">
+                            <div class="second" id="second"></div>
+                            <div class="minites" id="minites"></div>
+                            <div class="hour" id="hour"></div>
+                        </div>
+                    </div>
+                    <div class="class3">3</div><div class="class9">9</div>
+                    
+                    <div class="class6">6</div>
+                    
+                </div>
+            </div>
+            <script>
+            const secondHand = document.getElementById('second');
+            const minuteHand = document.getElementById('minites');
+            const hourHand = document.getElementById('hour');
+
+            const setDate = () => {
+                const now = new Date();
+
+                const seconds = now.getSeconds();
+                const secondsDegrees = ((seconds / 60) * 360) + 90;
+                secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+                const minutes = now.getMinutes();
+                const minutesDegrees = ((minutes / 60) * 360) + ((seconds / 60) * 6) + 90;
+                minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+
+                const hours = now.getHours();
+                const hoursDegrees = ((hours / 12) * 360) + ((minutes / 60) * 30) + 90;
+                hourHand.style.transform = `rotate(${hoursDegrees}deg)`;
+            }
+
+            setInterval(setDate, 1000);
+
+            setDate();
+            
+        </script>
+    
+    </body>
+</html>

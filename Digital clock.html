@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body{
+                background-color: lightgrey;
+            }
+            .gift{
+                padding: 100px;
+            }
+            .sift{
+                padding: 20px;
+                border:4px solid rgb(14, 194, 134);
+                height: 370px;
+                width: 200px;
+                justify-content: center;
+                align-items: center;
+                margin: auto;
+                border-radius: 10px;
+                box-shadow: 0 0 8px
+            }
+
+            .digital {  
+                height: 100px;
+                width: 100px;
+                background: rgba(238, 17, 17, 0.768) ;
+                backdrop-filter: blur(10px);
+                border: 2px solid rgb(145, 49, 49);
+                font-size: 30px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 10px;
+                margin: auto;
+                box-shadow: 0 0 81px 12px rgba(45,255,196,0.44);
+            }
+            #background-video {
+                width: 100vw;
+                height: 100vh;
+                object-fit: cover;
+                position: fixed;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                z-index: -1;
+             }
+        </style>
+    </head>
+    <body>
+             
+        <video id="background-video" autoplay loop muted poster="https://cdn.pixabay.com/video/2016/09/13/5192-183786490_tiny.mp4">
+            <source src="https://cdn.pixabay.com/video/2016/09/13/5192-183786490_tiny.mp4" type="video/mp4">
+        </video> 
+       
+       
+        <div class="type">
+        </div>
+              <div class="tip">
+                  <div class="gift">
+                      <div class="space">
+                          <div class="sift">
+                              
+                              <div id="clock" class="digital"></div><br>
+                              <div id="lock" class="digital"></div><br>
+                              <div id="oak" class="digital"></div><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    <script>
+        let clock=()=>{
+        let a= new Date()
+        let hour =a.getHours()
+        let min= a.getMinutes()
+        let second= a.getSeconds()
+            let date = document.getElementById('clock')         
+            let ate = document.getElementById('lock')
+            let at = document.getElementById('oak')
+            date.innerHTML =`${hour}`
+            ate.innerHTML=`${min}`
+            at.innerHTML =`${second}`
+            
+        }
+        setInterval(clock, 1000)
+        clock()
+    </script>
+    </body>
+</html>
