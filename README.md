@@ -3,26 +3,26 @@
 
  ### ⏰  Clock
   #### ⏰ Analog Clock
-    A real-time analog clock built with JavaScript and CSS transforms.
+   A real-time analog clock built with JavaScript and CSS transforms.
   #### ⏰ Digital Clock
-    A real-time digital clock built using HTML, CSS, and JavaScript
+   A real-time digital clock built using HTML, CSS, and JavaScript
   #### ⏰ Stop Watch
-    A functional stopwatch with start, stop, and reset features, built using HTML, CSS, and JavaScript
+   A functional stopwatch with start, stop, and reset features, built using HTML, CSS, and JavaScript
 
  ### 🌍Translator
-    A simple text translator that uses a translation API to convert text between languages.
+   A simple text translator that uses a translation API to convert text between languages.
 
   ### API-Integrated Applications
   #### 🌤 Weather App
-    A weather dashboard that shows current weather information for any city.
+   A weather dashboard that shows current weather information for any city.
   #### 📕Translator & Dictionary
-     A translator and dictionary app using external APIs to translate and define words in real-time.
+   A translator and dictionary app using external APIs to translate and define words in real-time.
 
 ### 🎮 Web Game 
   #### Rock Paper Scissors
-    A simple Rock Paper Scissors game built with HTML, CSS, and JavaScript. Play against another player on the same screen.
+   A simple Rock Paper Scissors game built with HTML, CSS, and JavaScript. Play against another player on the same screen.
  #### Tic tac toe
-    A classic Tic Tac Toe game built using HTML, CSS, and JavaScript. Playable by two players on the same screen.
+   A classic Tic Tac Toe game built using HTML, CSS, and JavaScript. Playable by two players on the same screen.
 
 A simple web-based game for fun and interaction.
 
